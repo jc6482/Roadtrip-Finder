@@ -4,9 +4,6 @@ Roadtrip Finder
 Project was written in Java using Spring framework. The frontend was wrritten in HTML, CSS, JS, jQuery...
 Json, guava,thymeleaf are also being used... Last but not least, to run the code, you have to install Maven first. 
 
-However, the project is not perfect. There are still a lot of things need to fix. 
-
-The project is put into a server so feel free to play around with it(the yelp key may be expired at some point though)---> http://theoldsystem.mooo.com:8080/
 
 It is relatively slow because we were not using database and the server is in Mexico
 
