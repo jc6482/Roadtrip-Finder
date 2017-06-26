@@ -5,9 +5,6 @@ Project was written in Java using Spring framework. The frontend was wrritten in
 Json, guava,thymeleaf are also being used... Last but not least, to run the code, you have to install Maven first. 
 
 
-It is relatively slow because we were not using database and the server is in Mexico
-
-
 User Manual
 
 Step1: First Page
