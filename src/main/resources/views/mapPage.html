@@ -44,7 +44,7 @@
 				th:value= "${endPlace}">
 			<input type="hidden" id="distance-input" style="display:none" type="text" value="30" size="2">
 			
-			<form action= "http://localhost:8080/boxes"  id="boxDataForm" method=post>
+			<form action= "/boxes"  id="boxDataForm" method=post>
 
 				<input type="hidden" id="startLoc" name="startLoc" value="Test"></input>
 				<input type="hidden" id="endLoc" name="endLoc" value="Test"></input>
@@ -115,7 +115,7 @@
 					}
 					
 				</style>
-				<form action = "http://localhost:8080/test" method = "post" commandname="food">
+				<form action = "/test" method = "post" commandname="food">
 					<div class="form-group" id="startPlace">
 					  <label for="">
 						Start Place
