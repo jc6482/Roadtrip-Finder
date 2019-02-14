@@ -9,7 +9,7 @@ build_image:
 
 sonar_scan:
   script:
-    - mvn sonar:sonar -Dsonar.host.url=https://sonarqube.theoldsystem.com -Dsonar.login=$SONAR_TOKEN 
+    - mvn clean install sonar:sonar -Dsonar.host.url=http://10.64.0.5:30900 -Dsonar.login=$SONAR_TOKEN 
 
 kube_deploy:
   script:
