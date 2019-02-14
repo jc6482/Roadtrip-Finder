@@ -1,0 +1,16 @@
+build_image:
+  script:
+    - docker login -u="$GIT_USER" -p="$GIT_PASS"
+    - "docker build -t roadtripfinder:build ."
+    - "docker tag roadtripfinder:build jc6482/roadtripfinder:latest"
+    - "docker push jc6482/roadtripfinder:latest"
+    - "docker rmi -f roadtripfinder:build jc6482/roadtripfinder:latest || true"
+    - docker logout
+
+sonar_scan:
+  script:
+    - mvn sonar:sonar -Dsonar.host.url=https://sonarqube.theoldsystem.com -Dsonar.login=$SONAR_TOKEN 
+
+kube_deploy:
+  script:
+    - /usr/bin/kubectl apply -f deployment.yaml
