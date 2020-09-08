@@ -68,7 +68,7 @@ spec:
           - path: /
             backend:
               serviceName: roadtripfinder
-              servicePort: 443
+              servicePort: 8080
 ---
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
