@@ -64,7 +64,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: tos
+              serviceName: roadtripfinder
               servicePort: 443
 ---
 apiVersion: autoscaling/v2beta2
