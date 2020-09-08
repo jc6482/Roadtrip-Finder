@@ -1,16 +1,33 @@
-build_image:
-  script:
-    - docker login -u="$GIT_USER" -p="$GIT_PASS"
-    - "docker build -t roadtripfinder:build ."
-    - "docker tag roadtripfinder:build jc6482/roadtripfinder:latest"
-    - "docker push jc6482/roadtripfinder:latest"
-    - "docker rmi -f roadtripfinder:build jc6482/roadtripfinder:latest || true"
-    - docker logout
+stages:
+  - scan
+  - build
+  - deploy
 
 sonar_scan:
+  stage: scan
   script:
     - mvn clean install sonar:sonar -Dsonar.host.url=http://10.64.0.5:30900 -Dsonar.login=$SONAR_TOKEN 
 
-kube_deploy:
+build_image:
+  stage: build
   script:
-    - /usr/bin/kubectl apply --validate=true --filename=deployment.yaml
+    - docker login -u="$GIT_USER" -p="$GIT_PASS"
+    - "docker build -t roadtripfinder:build ."
+    - "docker tag roadtripfinder:build jc6482/roadtripfinder:default_tag_change_me"
+    - "docker tag roadtripfinder:build jc6482/roadtripfinder:$CI_PIPELINE_ID"
+    - "docker push jc6482/roadtripfinder:default_tag_change_me"
+    - "docker push jc6482/roadtripfinder:$CI_PIPELINE_ID"
+    - "docker rmi -f roadtripfinder:build jc6482/roadtripfinder:$CI_PIPELINE_ID jc6482/roadtripfinder:default_tag_change_me || true"
+    - docker logout
+
+update_manifest:
+  stage: deploy
+  script:
+    - "git checkout -B cd_processing"
+    - "git config --global user.name 'Gitlab Runner'"
+    - "git config --global user.email 'runner@gitlab.theoldsystem.com'"
+    - "git remote set-url --push origin https://${GIT_USER}:${GIT_PASS}@${CI_SERVER_HOST}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
+    - "sed s/default_tag_change_me/$CI_PIPELINE_ID/g ./argo/deployment.yaml -i"
+    - "git add ."
+    - "git commit -m \"[ci skip] ${CI_PIPELINE_ID} - Updating tag for argo sync\""
+    - "git push -f --set-upstream origin cd_processing &>/dev/null"
