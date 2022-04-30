@@ -1,0 +1,97 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Road Trip Finder</title>
+
+    <!-- Custom styles for this template -->
+    <link href="../css/main.css" rel="stylesheet">
+    <!-- Font Awesome for social icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Ubuntu font courtesy Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet" type="text/css">
+    <!-- Open Sans font courtesy Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+
+    <!-- Favicon courtesy faviconist -->
+    <link rel="shortcut icon" href="https://faviconist.com/icons/b20c2d6cc5bcf3bb973de182f3a28ca7/favicon.ico">
+
+  </head>
+  <body>
+
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="container">
+            <div class="bg"></div>
+            <div class="overlay"></div>
+            <header class="header">
+				<h1>Road Trip Finder</h1>
+				<li2 id="right"><a href="user_criteria.html" target="_self"><i class="fa fa-share "></i></a></li2>
+                <br><br><br>
+				
+                <ul id="icon-links">
+					<li id="team">About us:<a class="showAbout" target="_blank"><i class="fa fa-gittip"></i></a></li>
+					<li id="instagram"><a href="https://www.instagram.com/willcodeforfoodbaylor/?hl=en" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                    <li id="facebook"><a href="https://www.facebook.com/profile.php?id=100011870630023" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                    
+                </ul>
+
+            </header>
+            <div id="about-overlay" class="click-overlay">
+                <div id="about-content">
+                    <img id="profile" src="/images/team.jpg" alt="profile" align="left">
+                    <p id="about-text">Team: Will Code For Food.<br> Yolo.EZ KATKA</p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    
+    <!-- slide links bar -->
+    <script>
+    $(".toggle").click(function() {
+        $("#text-links, #icon-links").toggle("slow");
+    });
+    </script>
+    <!-- show about section -->
+    <script>
+    $(".showAbout").click(function() {
+        $("#about-overlay").show();
+    });
+    </script>
+    <!-- hide about section -->
+    <script>
+    $("#about-overlay").click(function(e) {
+        if($(e.target).closest("#about-content").length> 0)
+            return;
+        $("#about-overlay").hide();
+    });
+    </script>
+    <!-- show blog section -->
+    <script>
+    $(".showBlog").click(function() {
+        $("#blog-overlay").show("slow");
+    });
+    </script>
+    <!-- hide blog section -->
+    <script>
+    $("#blog-overlay").click(function(e) {
+        if($(e.target).closest("#blog-content").length> 0)
+            return;
+        $("#blog-overlay").hide("slow");
+    });
+    </script>
+  
+
+</body></html>
+

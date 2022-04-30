@@ -1,0 +1,323 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Road Trip Finder</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- build:css styles/main.css -->
+    	<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.css" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" media="screen"
+     href="https://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+
+    <link rel="stylesheet" href="../css/main.css">  
+    <link rel="stylesheet" href="../css/global.css">   
+    <link rel="stylesheet" href="../css/slide.css">
+	<script language="javascript">
+		  function TJ(){  
+			var sp=f1.splace.value; 
+			var ep=f1.eplace.value;  
+			var y=f1.young.value;
+			var o=f1.old.value;
+			var n=f1.num.value;
+			var sd=f1.sdate.value;
+			var ed = f1.edate.value;
+				if(sp.length == 0)  {   
+					alert("Please enter the startplace"); 
+					return false; 
+				} else if(ep.length == 0)  {   
+					alert("Please enter the endplace"); 
+					return false; 
+				} else if(ed.length == 0)  {   
+					alert("Please enter the end date"); 
+					return false; 
+			   } else if(sd.length == 0)  {   
+					alert("Please enter the start date"); 
+					return false; 
+			   }else if(y.length == 0 || o.length == 0)  {   
+					alert("Please enter the age range"); 
+					return false; 
+				} else if(n.length == 0)  {   
+					alert("Please enter number of people"); 
+					return false; 
+				} else if (isNaN(n)) {
+					alert("Please enter a valid number for Number of People"); 
+					return false;
+				} else if (isNaN(o) || isNaN(y)) {
+					alert("Please enter a valid number for Age Range"); 
+					return false;
+				} 
+		  }
+	</script>
+	
+  </head>
+  <body>
+<div class="bg"></div>
+		<div class="housing-form-container" id="first" >
+			<div class="row">
+				<div class="myDivHeader2">
+					<span class="mySpanHeader">Create Your Own</span>
+				</div>
+			    <form name = "f1" action = "/test" method = "post" commandname="food">
+					<div class="form-group">
+					  <label for="">
+						Start Place
+					  </label>
+					  <input type="text" class="form-control" placeholder="City, State"  id="splace" name="splace" value="Waco TX"/>
+					</div>
+					<div class="form-group">
+					  <label for="">
+						End Place
+					  </label>
+					  <input type="text" class="form-control" placeholder="City, State" id="eplace" name="eplace" value="Las Vegas NV" />
+					</div>
+
+				
+					
+					<div id="datetimepicker1" class="input-append date">
+						<label for="">
+							Time Range
+						</label>
+						<br>
+						<input type="text" name="sdate" class="form-control"  value=""></input>
+						<span class="add-on">
+							<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+						</span>
+					</div>
+					<div id="datetimepicker2" class="input-append date">
+						<input type="text" class="form-control" name="edate"  value=""></input>
+						<span class="add-on">
+							<i data-time-icon="icon-time" data-date-icon="icon-calendar" ></i>
+						</span>
+					</div>
+					
+					<div class="form-group">
+					  <label for="">
+						Age Range
+					  </label>
+					  <br>
+					  <input type="text"   name="young" value="18" /> - 
+					  <input type="text"   name="old" value="30"/>    
+
+					  
+					</div>
+
+					<div class="form-group">
+					  <label for="">
+						Budget
+					  </label>
+					  <select name="budget" id="" class="form-control">
+						<option value="0">tight</option>
+						<option value="1">reasonable</option>
+						<option value="2">extravagant</option>
+						<option value="3">don't care</option>
+					  </select>
+					</div>
+				
+
+				
+					<div class="form-group">
+					  <label for="">
+						Number of People
+					  </label>
+					  <input type="text" class="form-control" placeholder="0,1,2.." name = "num" value="1" />
+					</div>
+				
+
+				
+					<div class="form-group">
+						<label class="personalInterest">
+						  Personal Interest
+						</label><br>
+						<input type="checkbox" name="interest1" id = "interest1" value="Camping"><label class="checkboxtext"> Camping </label>
+						<input type="checkbox" name="interest2" id = "interest2" value="Shopping"> <label class="checkboxtext">Shopping</label>
+						<input type="checkbox" name="interest3" id = "interest3" value="Outdoor Rec"> <label class="checkboxtext">Outdoor Rec</label>
+						<input type="checkbox" name="interest4" id = "interest4" value="Night Life"><label class="checkboxtext"> Night Life</label>
+						<input type="checkbox" name="interest5" id = "interest5" value="Eating"> <label class="checkboxtext">Eating</label>
+						<input type="checkbox" name="interest6" id = "interest6" value="Educational"> <label class="checkboxtext">Educational</label>
+						<input type="checkbox" name="interest7" id = "interest7" value="Action"> <label class="checkboxtext">Action</label>
+						<input type="checkbox" name="interest8" id = "interest8" value="Relaxation"> <label class="checkboxtext">Relaxation</label>
+						<br><br><br>
+						<button type="submit" class="btn btn-primary btn-lg btn-block" onClick = "return TJ();">Find Vacations</button>
+					</div>
+				</form>
+			</div>
+		</div>
+    
+		<div class="housing-form-container" id="second">
+			<div class="row">
+				<div class="myDivHeader">
+					<span class="mySpanHeader">Previous Roadtrips</span>
+				</div>
+			</div>
+			<br>
+<ul class="slides">
+    <input type="radio" name="radio-btn-1" id="img-1-1" checked />
+    <li class="slide-container">
+		<div class="slide">
+			<img src="../images/2.jpg" />
+        </div>
+		<div class="nav">
+			<label for="img-1-5" class="prev">&#x2039;</label>
+			<label for="img-1-2" class="next">&#x203a;</label>
+		</div>
+    </li>
+
+    <input type="radio" name="radio-btn-1" id="img-1-2" />
+    <li class="slide-container">
+        <div class="slide">
+          <img src="../images/1.jpg" />
+        </div>
+		<div class="nav">
+			<label for="img-1-1" class="prev">&#x2039;</label>
+			<label for="img-1-3" class="next">&#x203a;</label>
+		</div>
+    </li>
+
+    <input type="radio" name="radio-btn-1" id="img-1-3" />
+    <li class="slide-container">
+        <div class="slide">
+          <img src="../images/3.jpg" />
+        </div>
+		<div class="nav">
+			<label for="img-1-2" class="prev">&#x2039;</label>
+			<label for="img-1-4" class="next">&#x203a;</label>
+		</div>
+    </li>
+
+    <input type="radio" name="radio-btn-1" id="img-1-4" />
+    <li class="slide-container">
+        <div class="slide">
+          <img src="../images/4.jpg" />
+        </div>
+		<div class="nav">
+			<label for="img-1-3" class="prev">&#x2039;</label>
+			<label for="img-1-5" class="next">&#x203a;</label>
+		</div>
+    </li>
+
+    <input type="radio" name="radio-btn-1" id="img-1-5" />
+    <li class="slide-container">
+        <div class="slide">
+          <img src="../images/5.jpg" />
+        </div>
+		<div class="nav">
+			<label for="img-1-4" class="prev">&#x2039;</label>
+			<label for="img-1-1" class="next">&#x203a;</label>
+		</div>
+    </li>
+
+
+    <li class="nav-dots">
+      <label for="img-1-1" class="nav-dot" id="img-dot-1-1"></label>
+      <label for="img-1-2" class="nav-dot" id="img-dot-1-2"></label>
+      <label for="img-1-3" class="nav-dot" id="img-dot-1-3"></label>
+      <label for="img-1-4" class="nav-dot" id="img-dot-1-4"></label>
+      <label for="img-1-5" class="nav-dot" id="img-dot-1-5"></label>
+    </li>
+</ul>
+<br>
+<ul class="slides">
+    <input type="radio" name="radio-btn-2" id="img-2-1" checked />
+    <li class="slide-container">
+		<div class="slide">
+			<img src="../images/1.jpg" />
+        </div>
+		<div class="nav">
+			<label for="img-2-5" class="prev">&#x2039;</label>
+			<label for="img-2-2" class="next">&#x203a;</label>
+		</div>
+    </li>
+
+    <input type="radio" name="radio-btn-2" id="img-2-2" />
+    <li class="slide-container">
+        <div class="slide">
+          <img src="../images/2.jpg" />
+        </div>
+		<div class="nav">
+			<label for="img-2-1" class="prev">&#x2039;</label>
+			<label for="img-2-3" class="next">&#x203a;</label>
+		</div>
+    </li>
+
+    <input type="radio" name="radio-btn-2" id="img-2-3" />
+    <li class="slide-container">
+        <div class="slide">
+          <img src="../images/3.jpg" />
+        </div>
+		<div class="nav">
+			<label for="img-2-2" class="prev">&#x2039;</label>
+			<label for="img-2-4" class="next">&#x203a;</label>
+		</div>
+    </li>
+
+    <input type="radio" name="radio-btn-2" id="img-2-4" />
+    <li class="slide-container">
+        <div class="slide">
+          <img src="../images/4.jpg" />
+        </div>
+		<div class="nav">
+			<label for="img-2-3" class="prev">&#x2039;</label>
+			<label for="img-2-5" class="next">&#x203a;</label>
+		</div>
+    </li>
+
+    <input type="radio" name="radio-btn-2" id="img-2-5" />
+    <li class="slide-container">
+        <div class="slide">
+          <img src="../images/5.jpg" />
+        </div>
+		<div class="nav">
+			<label for="img-2-4" class="prev">&#x2039;</label>
+			<label for="img-2-1" class="next">&#x203a;</label>
+		</div>
+    </li>
+
+
+    <li class="nav-dots">
+      <label for="img-2-1" class="nav-dot" id="img-dot-2-1"></label>
+      <label for="img-2-2" class="nav-dot" id="img-dot-2-2"></label>
+      <label for="img-2-3" class="nav-dot" id="img-dot-2-3"></label>
+      <label for="img-2-4" class="nav-dot" id="img-dot-2-4"></label>
+      <label for="img-2-5" class="nav-dot" id="img-dot-2-5"></label>
+    </li>
+</ul>
+<!-- new slide above-->   
+
+		</div>
+
+
+    <!-- build:js scripts/main.js -->
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1yn9ChLO32EGrefSQLu3ha_OJ_tLpxcg&libraries=places"></script>
+	<script src="../js/TinaAutoComplete.js"></script>
+   
+    <script type="text/javascript"
+     src="https://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript">
+      $('#datetimepicker1').datetimepicker({
+      	
+        format: 'MM/dd/yyyy hh:mm',
+        language: 'en'
+      });
+    </script>
+        <script type="text/javascript">
+      $('#datetimepicker2').datetimepicker({
+        format: 'MM/dd/yyyy hh:mm',
+        language: 'en'
+      });
+    </script>
+    <script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script> 
+
+    
+
+    
+</body>
+</html>
