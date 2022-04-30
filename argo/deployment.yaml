@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: roadtripfinder
+  labels:
+    run: roadtripfinder
+spec:
+  # Removing as it's controlled by HPA and interrupts ARGO
+  #replicas: 1
+  selector:
+    matchLabels:
+      run: roadtripfinder
+  template:
+    metadata:
+      labels:
+        run: roadtripfinder
+    spec:
+      affinity:
+        # Try to put each pod on a different node in the K8s cluster
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                  - key: run
+                    operator: In
+                    values:
+                      - roadtripfinder
+                topologyKey: kubernetes.io/hostname
+      containers:
+      - name: roadtripfinder
+        image: jc6482/roadtripfinder:default_tag_change_me
+        imagePullPolicy: Always 
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: roadtripfinder
+spec:
+  selector:
+    run: roadtripfinder
+  ports:
+    - name: roadtripfinder-ui-port
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: roadtripfinder
+spec:
+  rules:
+    - host: roadtripfinder.theoldsystem.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: roadtripfinder
+              servicePort: 8080
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: roadtripfinder
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: roadtripfinder
+  minReplicas: 1
+  maxReplicas: 2
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
