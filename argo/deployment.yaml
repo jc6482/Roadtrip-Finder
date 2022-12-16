@@ -30,7 +30,7 @@ spec:
                 topologyKey: kubernetes.io/hostname
       containers:
       - name: roadtripfinder
-        image: jc6482/roadtripfinder:default_tag_change_me
+        image: enigodupont/roadtripfinder:default_tag_change_me
         imagePullPolicy: Always 
         ports:
         - containerPort: 8080
